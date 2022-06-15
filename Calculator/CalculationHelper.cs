@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿using Calculator.RPNComponents;
+
+namespace Calculator
 {
     /// <summary>
     /// 計算の補助に使うメソッドの集合
@@ -11,13 +13,11 @@
         /// <param name="target1">数値1</param>
         /// <param name="target2">数値2</param>
         /// <returns></returns>
-        internal static int CalcGreatestCommonDivisor(int target1, int target2)
+        internal static double CalcGreatestCommonDivisor(double target1, double target2)
         {
             if (target1 < target2)
             {
-                var temp = target1;
-                target1 = target2;
-                target2 = temp;
+                (target2, target1) = (target1, target2);
             }
 
             var r = target1 % target2;

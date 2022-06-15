@@ -1,0 +1,11 @@
+.header {
+  background-color: rgb(122, 122, 122);
+  text-align: left;
+  font-size: 24px;
+  color: white;
+}
+
+.header-content {
+  margin: 0;
+  padding-left: 5px;
+}

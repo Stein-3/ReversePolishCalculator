@@ -1,0 +1,12 @@
+.push-col-container {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  margin-bottom: 32px;
+}
+
+.push-button {
+  max-width: 72px;
+  height: 36px;
+  margin-left: 20px;
+  margin-top: 24px;
+}

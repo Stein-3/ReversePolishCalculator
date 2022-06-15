@@ -5,34 +5,29 @@ namespace Calculator.RPNComponents.Operator
     /// <summary>
     /// 除算を扱うクラス
     /// </summary>
-    internal class Divison : BasicOperator
+    internal class Divison : OperatorBase
     {
-        private static readonly string NAME = "/";
-
         /// <summary>
-        /// 指定したスタックから値を2つ取り出し、除算を行ってスタックに返す
+        /// コンストラクタ
         /// </summary>
-        /// <param name="calculationTargets">操作するスタック</param>
-        /// <exception cref="NotImplementedException"></exception>
-        public override void Execute(Stack<ICalculationTarget> calculationTargets)
-            => Execute(calculationTargets, ExecuteDivision);
+        public Divison()
+        { }
 
-        private NumberModel ExecuteDivision(NumberTarget numberTarget1, NumberTarget numberTarget2)
+        internal static ICalculationTarget DefinitionInstance => new Divison { IsDefinitionInstance = true };
+
+        protected override string Name => "/";
+
+        protected override NumberModel Calcurate(NumberTarget numberTarget1, NumberTarget numberTarget2)
         {
             if (numberTarget2.Numerator == 0) throw new RuntimeException("0で値を割ることはできません");
 
             return new NumberModel
             {
-                Denominator = numberTarget1.Denominator * numberTarget2.Numerator,
-                Numerator = numberTarget1.Numerator * numberTarget2.Denominator
+                Denominator = (double)(numberTarget1.Denominator * numberTarget2.Numerator),
+                Numerator = (double)(numberTarget1.Numerator * numberTarget2.Denominator)
             };
         }
 
-        /// <summary>
-        /// 実際の画面に表示する形式「-」を返す
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public override string Display() => NAME;
+        protected override ICalculationTarget Create() => new Subtraction();
     }
 }

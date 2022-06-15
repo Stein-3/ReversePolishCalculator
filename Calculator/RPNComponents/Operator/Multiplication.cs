@@ -3,30 +3,25 @@
     /// <summary>
     /// 乗算を扱うクラス
     /// </summary>
-    internal class Multiplication : BasicOperator
+    internal class Multiplication : OperatorBase
     {
-        private static readonly string NAME = "*";
-
         /// <summary>
-        /// 指定したスタックから2つの値を取り出し、乗算を行ってスタックに返す
+        /// コンストラクタ
         /// </summary>
-        /// <param name="calculationTargets">操作するスタック</param>
-        /// <exception cref="NotImplementedException"></exception>
-        public override void Execute(Stack<ICalculationTarget> calculationTargets)
-            => Execute(calculationTargets, ExecuteMultiplication);
+        public Multiplication()
+        { }
 
-        private NumberModel ExecuteMultiplication(NumberTarget numberTarget1, NumberTarget numberTarget2)
+        internal static ICalculationTarget DefinitionInstance => new Multiplication { IsDefinitionInstance = true };
+
+        protected override string Name => "*";
+
+        protected override NumberModel Calcurate(NumberTarget numberTarget1, NumberTarget numberTarget2)
             => new()
             {
-                Denominator = numberTarget1.Denominator * numberTarget2.Denominator,
-                Numerator = numberTarget1.Numerator * numberTarget2.Numerator,
+                Denominator = (double)(numberTarget1.Denominator * numberTarget2.Denominator),
+                Numerator = (double)(numberTarget1.Numerator * numberTarget2.Numerator),
             };
 
-        /// <summary>
-        /// 実際の画面に表示する形式「*」を返す
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public override string Display() => NAME;
+        protected override ICalculationTarget Create() => new Multiplication();
     }
 }

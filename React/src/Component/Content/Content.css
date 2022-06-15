@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 800px 1fr;
+  margin-top: 32px;
+}
+
+.operation-area {
+  text-align: left;
+  margin-left: 32px;
+}
